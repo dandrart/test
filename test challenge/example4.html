@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+
+  <title>example4</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+</header>
+
+<section>
+
+</section>
+
+<script>
+
+  async function postsPage ()
+  {
+    const requestURL = 'https://jsonplaceholder.typicode.com/posts';
+    const request = new Request(requestURL);
+
+    const response = await fetch(request);
+    const postsText = await response.text();
+
+    const posts = JSON.parse(postsText);
+    console.log(posts)
+    Header(postsText);
+    text(postsText);
+    function Header() {
+    const header = document.querySelector('header');
+    const myH1 = document.createElement('h1');
+    myH1.textContent = posts[0].id;
+    header.appendChild(myH1)
+    ;
+
+   const myPara = document.createElement('p');
+   for (let i = 0; i < posts.length; i ++)
+    myPara.textContent = posts[i].body
+      header.appendChild(myPara)
+    ;
+  }
+   function text(obj)
+   {
+     const section = document.querySelector('section');
+    section.textContent = obj;
+   }
+    }
+  postsPage();
+</script>
+</body>
+</html>
